@@ -1,4 +1,4 @@
-function [snr] = hprf_req (pt, Ti, g, freq, sigma, dt, range, nf, loss)
+function [snr] = hprf_req (pt, Ti, gt, gr,freq, sigma, dt, range, nf, loss)
 % This program implements Eq. (2.31)of textbook
 %% Inputs:
 % pt == input peak power in Watts
@@ -24,7 +24,7 @@ k_db = 10*log10(1.38e-23); % Boltzman's constant in dB
 to_db = 10*log10(290); % noise temp. in dB
 range_pwr4_db = 10*log10(range.^4); % vector of target range^4 in dB
 % Implement Equation (1.72)
-num = pav + Ti_db + g + g + lambda_sqdb + sigmadb;
+num = pav + Ti_db + gt + gr + lambda_sqdb + sigmadb;
 den = four_pi_cub + k_db + to_db + nf + loss + range_pwr4_db;
 snr = num - den;
 return
